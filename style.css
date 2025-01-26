@@ -318,7 +318,7 @@ body {
 /* Carousel Container */
 .carousel {
     position: relative;
-    width: 100%;
+    width: 100VH;
     height: 88vh;
     overflow: hidden;
     margin-bottom: 50px;
