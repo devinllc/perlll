@@ -816,7 +816,7 @@ header p {
 
 .image-container {
     width: 45%;
-
+    display: flex;
     /* Fixed height */
     overflow: hidden;
     /* Prevents overflow of image */
