@@ -55,7 +55,7 @@
                 <div class="carousel-slide">
                     <div class="carousel-image" style="background-image: url('assets/image copy 2.png')"></div>
                     <div class="carousel-text carousel-left">
-                        <h1>Welcome to <span>UFDev</span> <span>.LLC</span></h1>
+                        <h1>Welcome to <span>UFDev.LLC</span> <span></span></h1>
                         <p>Founded by IIT Patna alumni</p>
                         <button class="carousel-btn">Learn More</button>
                     </div>
@@ -435,7 +435,7 @@
         <div class="features-container">
             <!-- Left side image -->
             <div class="image-container">
-          
+
                 <img src="assets/Screenshot 2025-02-03 at 3.25.05 PM.png" alt="Feature Image" class="feature-image">
                 <img src="assets/Screenshot 2025-02-03 at 3.25.39 PM.png" alt="Feature Image" class="feature-image">
             </div>
@@ -540,7 +540,152 @@
     </div>
 
 
+    <!-- projects  -->
+    <section class="projectsssd">
+        <div id="project-main-container">
+            <div id="project-header-container">
+                <h1 id="project-main-title">Our Projects</h1>
+                <p id="project-subtitle">Explore our Web & Flutter Applications</p>
+            </div>
 
+            <!-- Filter Buttons & Search Bar Row -->
+            <div id="project-filter-container">
+                <div id="project-filter-buttons">
+                    <button class="project-filter-btn" onclick="filterProjects('all')">All</button>
+                    <button class="project-filter-btn" onclick="filterProjects('web')">Web Projects</button>
+                    <button class="project-filter-btn" onclick="filterProjects('flutter')">Flutter Projects</button>
+                </div>
+
+                <!-- Search Field & Button -->
+                <div id="project-search-container">
+                    <input type="text" id="project-search" placeholder="Search projects..." />
+                    <button class="search-btn" onclick="searchProjects()">🔍 Search</button>
+                </div>
+            </div>
+
+            <!-- Project Grid -->
+            <div id="project-grid">
+                <!-- Web Project -->
+                <div class="project-card project-web"
+                    onclick="openModal('A Service Site', 'A Service Site', '/assets/web_p1.png', 'https://webserv-sage.vercel.app/')">
+                    <img src="/assets/web_p1.png" alt="Web Project 1">
+                    <div class="project-overlay">
+                        <h3 class="project-title">A Service Site</h3>
+                        <p class="project-description">Responsive Service Website</p>
+                    </div>
+                </div>
+                <!-- Web Project -->
+                <div class="project-card project-web"
+                    onclick="openModal('GOLF', 'Responsive GLOF Website', '/assets/web_p2.png','https://replicas.vercel.app/')">
+                    <img src="/assets/web_p2.png" alt="Web Project 1">
+                    <div class="project-overlay">
+                        <h3 class="project-title">GOLF</h3>
+                        <p class="project-description">Responsive GOLF Website</p>
+                    </div>
+                </div>
+                <!-- Web Project -->
+                <div class="project-card project-web"
+                    onclick="openModal('RAYBON', 'Responsive RAYBON Website', '/assets/web_p3', 'https://m-web-coral.vercel.app/')">
+                    <img src="/assets/web_p3.png" alt="Web Project 1">
+                    <div class="project-overlay">
+                        <h3 class="project-title">RAYBON</h3>
+                        <p class="project-description">Responsive RAYBON Website</p>
+                    </div>
+                </div>
+                <!-- Web Project -->
+                <div class="project-card project-web"
+                    onclick="openModal('PREVLT.LLC', 'Responsive Service Website', '/assets/web_p4.png','https://prevlt.vercel.app/')">
+                    <img src="/assets/web_p4.png" alt="Web Project 1">
+                    <div class="project-overlay">
+                        <h3 class="project-title">PREVLT.LLC</h3>
+                        <p class="project-description">Responsive Service Website</p>
+                    </div>
+                </div>
+                <!-- Web Project -->
+                <div class="project-card project-web"
+                    onclick="openModal('Web Project 1', 'Responsive E-commerce Website', '/assets/assets/web_p5.png','https://imaxxtv-je32.vercel.app')">
+                    <img src="/assets/assets/web_p5.png" alt="Web Project 1">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Web Project 3</h3>
+                        <p class="project-description">Responsive E-commerce Website</p>
+                    </div>
+                </div>
+
+                <!-- Flutter Project -->
+                <div class="project-card project-flutter"
+                    onclick="openModal('Flutter Project 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium velit incidunt quibusdam, earu cgfghjhgh gnfhjfghj fhfhfj ghfgj fhfgjfgj dfhfg ', '/assets/image copy 6.png')">
+                    <img src="/assets/image copy 6.png" alt="Flutter Project 1">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Flutter Project 1</h3>
+                        <p class="project-description">Cross-Platform Mobile App</p>
+                    </div>
+
+                </div>
+                <!-- Flutter Project -->
+                <div class="project-card project-flutter"
+                    onclick="openModal('Flutter Project 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium velit incidunt quibusdam, earu cgfghjhgh gnfhjfghj fhfhfj ghfgj fhfgjfgj dfhfg ', '/assets/image copy 6.png')">
+                    <img src="/assets/image copy 6.png" alt="Flutter Project 1">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Flutter Project 5</h3>
+                        <p class="project-description">Cross-Platform Mobile App</p>
+                    </div>
+
+                </div>
+                <!-- Flutter Project -->
+                <div class="project-card project-flutter"
+                    onclick="openModal('Flutter Project 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium velit incidunt quibusdam, earu cgfghjhgh gnfhjfghj fhfhfj ghfgj fhfgjfgj dfhfg ', '/assets/image copy 6.png')">
+                    <img src="/assets/image copy 6.png" alt="Flutter Project 1">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Flutter Project 5</h3>
+                        <p class="project-description">Cross-Platform Mobile App</p>
+                    </div>
+
+                </div>
+                <!-- Flutter Project -->
+                <div class="project-card project-flutter"
+                    onclick="openModal('Flutter Project 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium velit incidunt quibusdam, earu cgfghjhgh gnfhjfghj fhfhfj ghfgj fhfgjfgj dfhfg ', '/assets/image copy 6.png')">
+                    <img src="/assets/image copy 6.png" alt="Flutter Project 1">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Flutter Project 2</h3>
+                        <p class="project-description">Cross-Platform Mobile App</p>
+                    </div>
+
+                </div>
+                <!-- Flutter Project -->
+                <div class="project-card project-flutter"
+                    onclick="openModal('Flutter Project 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium velit incidunt quibusdam, earu cgfghjhgh gnfhjfghj fhfhfj ghfgj fhfgjfgj dfhfg ', '/assets/image copy 6.png')">
+                    <img src="/assets/image copy 6.png" alt="Flutter Project 1">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Flutter Project 2</h3>
+                        <p class="project-description">Cross-Platform Mobile App</p>
+                    </div>
+
+                </div>
+                <!-- Flutter Project -->
+                <div class="project-card project-flutter"
+                    onclick="openModal('Flutter Project 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium velit incidunt quibusdam, earu cgfghjhgh gnfhjfghj fhfhfj ghfgj fhfgjfgj dfhfg ', '/assets/image copy 6.png')">
+                    <img src="/assets/image copy 6.png" alt="Flutter Project 1">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Flutter Project 1</h3>
+                        <p class="project-description">Cross-Platform Mobile App</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pop-up Modal -->
+    <div id="project-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <img id="modal-image" src="" alt="Project Image">
+            <p id="modal-description"></p>
+            <br>
+            <button id="live-preview-btn" class="project-filter-btn">Live Preview</button>
+        </div>
+    </div>
 
 
 

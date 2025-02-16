@@ -289,3 +289,77 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+
+
+// projectssss
+
+// // Function to filter projects
+// function filterProjects(category) {
+//   const projects = document.querySelectorAll('.project-card');
+//   projects.forEach(project => {
+//       if (category === 'all' || project.classList.contains('project-' + category)) {
+//           project.style.display = 'block';
+//       } else {
+//           project.style.display = 'none';
+//       }
+//   });
+// }
+
+// // Function to open project detail page
+// function openProjectDetail(pageUrl) {
+ 
+//   window.location.href = pageUrl;
+// }
+
+
+
+
+// Function to filter projects
+function filterProjects(category) {
+  const projects = document.querySelectorAll(".project-card");
+  projects.forEach((project) => {
+      if (category === "all" || project.classList.contains("project-" + category)) {
+          project.style.display = "flex";
+      } else {
+          project.style.display = "none";
+      }
+  });
+}
+
+// Function to search projects by name
+function searchProjects() {
+  let searchInput = document.getElementById("project-search").value.toLowerCase();
+  let projects = document.querySelectorAll(".project-card");
+
+  projects.forEach((project) => {
+      let title = project.querySelector(".project-title").innerText.toLowerCase();
+      if (title.includes(searchInput)) {
+          project.style.display = "flex";
+      } else {
+          project.style.display = "none";
+      }
+  });
+}
+
+// Function to open the modal with project details and preview link
+function openModal(title, description, imageSrc, url) {
+  document.getElementById("modal-title").innerText = title;
+  document.getElementById("modal-description").innerText = description;
+  document.getElementById("modal-image").src = imageSrc;
+  document.getElementById("project-modal").style.display = "flex";
+
+  // Update the live preview button with the provided URL
+  document.getElementById("live-preview-btn").onclick = function() {
+      openPreview(url);
+  };
+}
+
+// Function to open the live preview in a new tab
+function openPreview(url) {
+  window.open(url, '_blank'); // Opens the link in a new tab
+}
+// Function to close the modal
+function closeModal() {
+  document.getElementById("project-modal").style.display = "none";
+}
