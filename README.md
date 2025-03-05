@@ -39,7 +39,7 @@ Cloud Services: Vercel
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/devinllc/imaxxtv.git
+   git clone https://github.com/devinllc/perlll.git
 
 
 Feel free to explore the repository and contribute to making IMAXX TV the go-to OTT platform for everyone!
