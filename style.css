@@ -5,9 +5,21 @@
     /* font-family: "Audiowide"; */
 }
 
+:root {
+    --primary-color: #004D00;
+    --secondary-color: #18cb96;
+    --text-color: #1b251c;
+    --background-color: white;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     /* font-size: 18px; */
-    background-color: white;
+    background-color: var(--background-color);
     font-family: "Trirong", sans-serif;
 
     /* h1.a {
@@ -26,11 +38,16 @@ body {
     font-size: 14px;
     line-height: 1.1;
     /* letter-spacing: 0.2rem; */
-    color: #004D00;
+    color: var(--primary-color);
 }
 
 p {
     font-family: "Sofia", sans-serif;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Top-bar (hidden on mobile view) */
@@ -38,28 +55,31 @@ p {
     display: flex;
     padding: 10px 20px;
     font-size: 13px;
-    color: #1b251c;
-    justify-content: flex-end;
+    color: var(--text-color);
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .contact-info {
     /* margin-right: 15px; */
-    justify-content: end;
+    justify-content: flex-start;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .top-bar .contact-info span {
     margin-right: 15px;
-
+    margin-bottom: 5px;
 }
 
 .demo-btn a {
     padding: 10px 20px;
     /* background-color:orange; */
-    color: #18cb96;
+    color: var(--secondary-color);
     text-decoration: none;
     border-radius: 5px;
     text-transform: uppercase;
+    display: inline-block;
 }
 
 /* Sticky Navigation */
@@ -67,13 +87,14 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background-color: var(--background-color);
     padding: 15px 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-color);
     position: sticky;
     top: 0;
     z-index: 100;
     text-transform: uppercase;
+    flex-wrap: wrap;
 }
 
 .navbar .logo a {
@@ -84,12 +105,20 @@ p {
 
 .navbar .logo a img {
     width: 180px;
-    margin-left: 50px;
+    max-width: 100%;
+    margin-left: 0;
+}
+
+@media (min-width: 768px) {
+    .navbar .logo a img {
+        margin-left: 50px;
+    }
 }
 
 .nav-links {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .nav-links li {
@@ -342,298 +371,241 @@ p {
 /* Carousel Container */
 .carousel {
     position: relative;
-    width: 100%;
-    height: 92vh;
     overflow: hidden;
-    margin-bottom: 50px;
+    width: 100%;
+    height: 100vh;
+    max-height: 800px;
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        height: 70vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel {
+        height: 60vh;
+    }
 }
 
 .carousel-slides {
     display: flex;
+    width: 400%;
+    height: 100%;
     transition: transform 0.5s ease-in-out;
 }
 
 .carousel-slide {
     position: relative;
-    min-width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    width: 25%;
+    height: 100%;
 }
 
 .carousel-image {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     background-size: cover;
     background-position: center;
-    opacity: 0.2;
-    z-index: 1;
+    background-repeat: no-repeat;
 }
 
 .carousel-text {
-    position: relative;
-    z-index: 2;
-    /* color: #18cb96; */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     padding: 20px;
+    width: 100%;
+    max-width: 600px;
     text-align: center;
-    width: 90%;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
+}
+
+@media (max-width: 768px) {
+    .carousel-text {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .carousel-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .carousel-text p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-text {
+        padding: 10px;
+    }
+
+    .carousel-text h1 {
+        font-size: 1.5rem;
+    }
+
+    .carousel-text p {
+        font-size: 0.9rem;
+    }
 }
 
 .carousel-left {
-    top: 30%;
     left: 10%;
-    text-align: left;
-    animation-name: slide-in-left;
 }
 
 .carousel-center {
-    top: 30%;
     left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    animation-name: fade-in;
+    transform: translate(-50%, -50%);
 }
 
 .carousel-right {
-    top: 30%;
     right: 10%;
-    text-align: right;
-    animation-name: slide-in-right;
 }
 
-h1 {
-    font-size: 3rem;
-    color: #18cb96;
+.carousel-text h1 {
+    margin-bottom: 10px;
+    font-size: 2.5rem;
 }
 
-p {
+.carousel-text p {
+    margin-bottom: 20px;
     font-size: 1.2rem;
-    color: #1b251c;
-
 }
 
 .carousel-btn {
-    margin-top: 20px;
     padding: 10px 20px;
-    background-color: #18cb96;
+    background-color: var(--secondary-color);
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
 }
 
 .carousel-btn:hover {
-    background-color: #1b251c;
-    /* border: #18cb96 2px solid; */
-    border-radius: 5px;
-    color: white;
+    background-color: var(--primary-color);
 }
 
-@keyframes slide-in-left {
-    0% {
-        opacity: 0;
-        transform: translateX(-100%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slide-in-right {
-    0% {
-        opacity: 0;
-        transform: translateX(100%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes fade-in {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-/* Bottom Sections */
+/* Responsive adjustments for carousel bottom sections */
 .carousel-bottom-sections {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
     display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: var(--background-color);
+    flex-wrap: wrap;
 }
 
 .carousel-section {
-    width: 25%;
-    padding: 20px;
-    text-align: center;
-    color: white;
-    transition: background-color 0.3s, color 0.3s;
-    background-color: transparent;
-}
-
-.carousel-section:hover {
+    flex: 1;
+    min-width: 250px;
+    margin: 10px;
+    padding: 15px;
     background-color: white;
-    color: black;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    border-radius: 5px;
 }
 
-/* Mobile Specific Adjustments */
 @media (max-width: 768px) {
-    .carousel {
-        overflow: hidden;
-        height: 60vh;
-        /* Reduce height of carousel on tablet and smaller devices */
-
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    p {
-        font-size: 1rem;
-    }
-
-    .carousel-left,
-    .carousel-center,
-    .carousel-right {
-        top: 20%;
-    }
-
     .carousel-bottom-sections {
         flex-direction: column;
-        display: none;
-        height: 0;
     }
 
     .carousel-section {
         width: 100%;
-        padding: 15px;
+        margin: 10px 0;
     }
 }
 
-@media (max-width: 480px) {
-    .carousel {
-        overflow: hidden;
-        height: 50vh;
-        /* Reduce height further for smaller screens */
-    }
-
-    .carousel-image {
-        background-size: cover;
-        background-position: center;
-        opacity: 0.5;
-    }
-
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    p {
-        font-size: 0.9rem;
-    }
-
-    .carousel-btn {
-        padding: 8px 16px;
-        font-size: 0.9rem;
-    }
-
-    .carousel-left,
-    .carousel-center,
-    .carousel-right {
-        top: 15%;
-    }
-
-    /* Hide bottom sections on mobile */
-    .carousel-bottom-sections {
-        display: none;
-        height: 0;
-    }
-}
-
-
-/* caroulse botton section  */
-/* Institutes Live Section */
 /* Institutes Live Section */
 .institutes-live-section {
-    padding: 20px;
-    margin: 20px auto;
-    width: 100%;
-    /* Width adjusted for each section */
-    border-right: 4px solid #e63946;
-    /* Left border */
-}
-
-.institutes-live-sections {
-    padding: 20px;
-    margin: 20px auto;
-    width: 100%;
-    /* Width adjusted for each section */
-
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .institutes-live {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+    margin: 10px;
 }
 
 .institutes-live i {
-    font-size: 40px;
+    font-size: 24px;
     margin-right: 10px;
-    color: #1b251c;
-
+    color: var(--primary-color);
 }
 
 .institutes-live p {
-    font-size: 20px;
     margin: 0;
-    font-weight: bold;
-    color: #1b251c;
-    /* text-align: left; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
-/* Responsive Design */
+/* Media queries for responsive design */
+@media (max-width: 1024px) {
+    .navbar .logo a img {
+        width: 150px;
+    }
+
+    .nav-links li {
+        margin-left: 15px;
+    }
+}
+
 @media (max-width: 768px) {
-    .institutes-live-section {
-        display: none;
-        /* Hide the entire section on mobile devices */
+    .top-bar {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .institutes-live-sections {
+    .contact-info {
+        margin-bottom: 10px;
+        justify-content: center;
+    }
+
+    .hamburger {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background-color: var(--background-color);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.3s ease;
+        box-shadow: -2px 0 5px var(--shadow-color);
+    }
+
+    .nav-links.show {
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    .close-menu {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
         display: none;
-        /* Hide the entire section on mobile devices */
+    }
+
+    .close-menu.show {
+        display: block;
     }
 }
 
-@media (max-width: 480px) {
-    .institutes-live-section {
-        display: none;
-        /* Hide the entire section on mobile devices */
-    }
-
-    .institutes-live-sections {
-        display: none;
-        /* Hide the entire section on mobile devices */
-    }
-}
 
 
 

@@ -65,7 +65,7 @@
 //   // Show the nav menu and close button when the hamburger is clicked
 //   navLinks.classList.toggle("show");
 //   closeButton.classList.toggle("show");
-   
+
 //   hamburger.style.display = "none";
 // }
 
@@ -103,118 +103,170 @@
 
 
 
-// Function to toggle the menu open and close
+// Mobile menu functionality
 function toggleMenu() {
   const navLinks = document.querySelector(".nav-links");
   const closeButton = document.querySelector(".close-menu");
   const hamburger = document.querySelector(".hamburger");
 
-  // Show the nav menu and close button when the hamburger is clicked
-  navLinks.classList.toggle("show");
-  closeButton.classList.toggle("show");
-  hamburger.style.display = "none"; // Hide the hamburger when menu is opened
+  navLinks.classList.remove("hide");
+  navLinks.classList.add("show");
+  closeButton.classList.add("show");
+  hamburger.style.display = "none";
 }
 
-// Function to close the menu
+// Close the mobile menu
 function closeMenu() {
   const navLinks = document.querySelector(".nav-links");
   const closeButton = document.querySelector(".close-menu");
   const hamburger = document.querySelector(".hamburger");
 
-  // Hide the nav menu and close button
   navLinks.classList.remove("show");
+  navLinks.classList.add("hide");
   closeButton.classList.remove("show");
-  hamburger.style.display = "block"; // Show the hamburger when menu is closed
+  hamburger.style.display = "block";
 }
 
 // Add 'active' class to the selected navigation item
-const navItems = document.querySelectorAll('.nav-item');
+document.addEventListener('DOMContentLoaded', function () {
+  const navItems = document.querySelectorAll('.nav-item');
 
-navItems.forEach(item => {
-  item.addEventListener('click', function() {
-    // Remove 'active' from all nav items
-    navItems.forEach(nav => nav.classList.remove('active'));
-    // Add 'active' to the clicked item
-    this.classList.add('active');
+  navItems.forEach(item => {
+    item.addEventListener('click', function () {
+      // Close the menu on item click in mobile view
+      if (window.innerWidth <= 768) {
+        closeMenu();
+      }
 
-    // Close the menu on item click in mobile view
-    if (window.innerWidth <= 768) {
-      closeMenu();
+      // Remove 'active' from all nav items
+      navItems.forEach(nav => nav.classList.remove('active'));
+      // Add 'active' to the clicked item
+      this.classList.add('active');
+    });
+  });
+
+  // Detect screen resize and adjust menu accordingly
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 768) {
+      const navLinks = document.querySelector(".nav-links");
+      const hamburger = document.querySelector(".hamburger");
+
+      navLinks.classList.remove("show");
+      navLinks.classList.remove("hide");
+      hamburger.style.display = "none";
+    } else {
+      const hamburger = document.querySelector(".hamburger");
+      hamburger.style.display = "block";
+    }
+  });
+
+  // Initialize carousel
+  initCarousel();
+
+  // Lazy load images
+  lazyLoadImages();
+});
+
+// Carousel functionality
+function initCarousel() {
+  const slides = document.querySelector('.carousel-slides');
+  const slideCount = document.querySelectorAll('.carousel-slide').length;
+  let currentSlide = 0;
+
+  // Auto-advance carousel
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slideCount;
+    updateCarousel();
+  }, 5000);
+
+  // Update carousel position
+  function updateCarousel() {
+    slides.style.transform = `translateX(-${currentSlide * 25}%)`;
+  }
+}
+
+// Lazy loading images for better performance
+function lazyLoadImages() {
+  if ('IntersectionObserver' in window) {
+    const imgObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          const src = img.getAttribute('data-src');
+
+          if (src) {
+            img.src = src;
+            img.removeAttribute('data-src');
+          }
+
+          observer.unobserve(img);
+        }
+      });
+    });
+
+    // Target all images with data-src attribute
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      imgObserver.observe(img);
+    });
+  } else {
+    // Fallback for browsers that don't support IntersectionObserver
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      img.src = img.getAttribute('data-src');
+      img.removeAttribute('data-src');
+    });
+  }
+}
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     }
   });
 });
 
-// Detect screen resize and handle menu visibility
-window.addEventListener("resize", function () {
-  const hamburger = document.querySelector(".hamburger");
-  const navLinks = document.querySelector(".nav-links");
+// Add structured data for SEO
+function addStructuredData() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "UFDev.LLC",
+    "url": "https://ufdev.llc",
+    "logo": "assets/ufdev.llc.png",
+    "description": "Founded by IIT Patna alumni, UFDev.LLC is a dynamic software development company delivering scalable, innovative, and affordable digital solutions.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "India"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "",
+      "contactType": "customer service",
+      "email": "rameshnda09@gmail.com"
+    },
+    "sameAs": [
+      "https://in.linkedin.com/in/ramesh-vishwakarma-957355234"
+    ]
+  };
 
-  if (window.innerWidth > 768) {
-    // If in desktop view, hide hamburger and ensure navLinks is shown
-    hamburger.style.display = "none";
-    navLinks.classList.remove("show"); // Ensure the nav menu is always shown on desktop
-  } else {
-    // If in mobile view, show hamburger
-    hamburger.style.display = "block";
-  }
-});
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.text = JSON.stringify(structuredData);
+  document.head.appendChild(script);
+}
 
-// Initial check on page load for screen size
-window.addEventListener("DOMContentLoaded", function () {
-  const hamburger = document.querySelector(".hamburger");
-
-  // Hide the hamburger if on desktop view
-  if (window.innerWidth > 768) {
-    hamburger.style.display = "none";
-  }
-});
-
-
-
-
-
-
-
-// let carouselCurrentIndex = 0;
-// const carouselSlides = document.querySelectorAll(".carousel-slide");
-// const bottomSections = document.querySelector(".carousel-bottom-sections");
-
-// function isMobileView() {
-//   return window.innerWidth <= 480;
-// }
-
-// function updateBottomSectionVisibility() {
-//   if (isMobileView()) {
-//     bottomSections.style.display = "none";
-//   } else {
-//     bottomSections.style.display = "flex";
-//   }
-// }
-
-// function showCarouselSlide(index) {
-//   const carouselSlideWidth = carouselSlides[0].clientWidth;
-//   const carousel = document.querySelector(".carousel-slides");
-//   carousel.style.transform = `translateX(-${carouselSlideWidth * index}px)`;
-
-//   const currentSlideText =
-//     carouselSlides[index].querySelector(".carousel-text");
-//   currentSlideText.style.animation = "none";
-//   setTimeout(() => {
-//     currentSlideText.style.animation = "";
-//   }, 10);
-
-//   updateBottomSectionVisibility();
-// }
-
-// function nextCarouselSlide() {
-//   carouselCurrentIndex = (carouselCurrentIndex + 1) % carouselSlides.length;
-//   showCarouselSlide(carouselCurrentIndex);
-// }
-
-// window.addEventListener("load", updateBottomSectionVisibility);
-// window.addEventListener("resize", updateBottomSectionVisibility);
-
-// setInterval(nextCarouselSlide, 5000);
+// Call the function to add structured data
+document.addEventListener('DOMContentLoaded', addStructuredData);
 
 let carouselCurrentIndex = 0;
 const carouselSlides = document.querySelectorAll(".carousel-slide");
@@ -308,7 +360,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // // Function to open project detail page
 // function openProjectDetail(pageUrl) {
- 
+
 //   window.location.href = pageUrl;
 // }
 
@@ -319,11 +371,11 @@ document.addEventListener("DOMContentLoaded", function () {
 function filterProjects(category) {
   const projects = document.querySelectorAll(".project-card");
   projects.forEach((project) => {
-      if (category === "all" || project.classList.contains("project-" + category)) {
-          project.style.display = "flex";
-      } else {
-          project.style.display = "none";
-      }
+    if (category === "all" || project.classList.contains("project-" + category)) {
+      project.style.display = "flex";
+    } else {
+      project.style.display = "none";
+    }
   });
 }
 
@@ -333,12 +385,12 @@ function searchProjects() {
   let projects = document.querySelectorAll(".project-card");
 
   projects.forEach((project) => {
-      let title = project.querySelector(".project-title").innerText.toLowerCase();
-      if (title.includes(searchInput)) {
-          project.style.display = "flex";
-      } else {
-          project.style.display = "none";
-      }
+    let title = project.querySelector(".project-title").innerText.toLowerCase();
+    if (title.includes(searchInput)) {
+      project.style.display = "flex";
+    } else {
+      project.style.display = "none";
+    }
   });
 }
 
@@ -350,8 +402,8 @@ function openModal(title, description, imageSrc, url) {
   document.getElementById("project-modal").style.display = "flex";
 
   // Update the live preview button with the provided URL
-  document.getElementById("live-preview-btn").onclick = function() {
-      openPreview(url);
+  document.getElementById("live-preview-btn").onclick = function () {
+    openPreview(url);
   };
 }
 
